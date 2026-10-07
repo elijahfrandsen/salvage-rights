@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: salvage-rights
+    runtime: node
+    plan: free
+    numInstances: 1
+    buildCommand: npm ci --no-audit --no-fund && npm run build
+    startCommand: npm run start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 24.19.0
+# No PUBLIC_ORIGIN required for the assigned onrender.com URL:
+# the server uses RENDER_EXTERNAL_URL. For a custom domain set PUBLIC_ORIGIN.
+# Choose an always-on paid tier only with the owner's explicit budget approval.
