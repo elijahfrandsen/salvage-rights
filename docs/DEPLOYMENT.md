@@ -1,12 +1,12 @@
 # Deploy and maintain
 
-**Verified 2026-10-07:** Public deployment has not occurred. Render and Railway connections are available in the plugin directory, but neither is connected in this execution environment. A Render connection has been offered as the next launch action. Built-in Sites hosting uses Cloudflare Workers rather than an always-running Node process. The completed local game must be deployed on a Node Web Service to meet the public acceptance gate.
+**Deployment in progress 2026-10-07:** Source is now published at https://github.com/elijahfrandsen/salvage-rights. The Render free Web Service is https://salvage-rights.onrender.com in Oregon, with one instance. Initial build omitted development tools because NODE_ENV=production; NPM_CONFIG_INCLUDE=dev is now configured. Public acceptance checks are pending.
 
 ## Render: simplest friend-play route
 
 1. Create or use a Render account and a GitHub/GitLab repository you control. Put the contents of this `salvage-rights` folder at the repository root and push it.
 2. In Render select **New → Web Service**, connect that repository, and use Node runtime. The included `render.yaml` also supports a Blueprint deployment.
-3. Build command: `npm ci --no-audit --no-fund && npm run build`.
+3. Build command: `npm ci --include=dev --no-audit --no-fund && npm run build`.
 4. Start command: `npm start`.
 5. Node version: `24.19.0`. Set `NODE_ENV=production`. Health path: `/healthz`. Render supplies `PORT`; do not hardcode a different public socket port.
 6. Keep exactly **one instance**, one process, and autoscaling disabled. No Redis/database/static service is needed.

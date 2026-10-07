@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
 import type { Ack } from "../../../packages/shared/src/types";
 export const socket = io(import.meta.env.VITE_SERVER_URL || undefined, {
+  transports: ["websocket"],
   autoConnect: false,
   reconnectionDelay: 600,
   reconnectionDelayMax: 5000,
