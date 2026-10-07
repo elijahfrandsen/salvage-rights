@@ -51,11 +51,26 @@ Five simple policies across 300 seeds each for 2, 4, and 6 players use only curr
 
 ## Not verified / launch blockers
 
-- No public deployment, public HTTPS/WSS upgrade, live-origin checks, provider restart, or public-browser acceptance. Compatible hosting access is missing.
+- Provider restart recovery, public 4/6-player matches, and physical phone / Safari / Firefox acceptance remain unverified.
 - No Docker runtime build (Docker is unavailable), physical phone or Safari/Firefox run.
 - No human 2/4/6-player playtest or real rematch-conversion analytics.
 - UI rejected-plan preservation is implemented; adversarial rejections are primarily exercised through real socket tests, not a browser-forced server rejection.
 - No exhaustive accessibility audit or provider-specific trusted proxy policy. The source documents peer-based throttling at a proxy boundary.
 - Optional practice mode, durable metrics and future abilities remain absent.
 
-The correct status is **tested local multiplayer game, public launch pending hosting access**. A screenshot, localhost address or static-only page is not a public multiplayer launch.
+The current status is **public multiplayer game live on Render Free**. See the public acceptance record below.
+
+
+## Public launch acceptance — 2026-10-07
+
+URL: https://salvage-rights.onrender.com
+Live application commit: b317294dab5d0cd17b2494320fbfef510ec42822.
+Render deployment: dep-db37q2m7bikc73buukbg, confirmed live.
+
+Two independently seated cloud-browser tabs created/joined room TWD4XK by invite, readied, launched, and completed all eight rounds using real public WSS connections. Both captains bid one drone on the first site each round and finished with 20 credits, six shared claims, eight power spent, and shared victory. Refreshing Captain A during round one resumed its seat; Captain B became host and returned the ready crew to the lobby and launched a fresh rematch. Public screenshot: public-match.jpg. This used separate tab session storage in one browser, not separate physical devices.
+
+Public HTTPS checks returned 200 for /healthz (only {ok:true}), /room/ABC234 (absolute production share metadata), and /social.png. A polling request with Origin https://evil.invalid returned 403. The client now connects directly with WebSockets: same-origin polling GET lacks Origin, which the production server intentionally requires. No runtime error logs were observed during the match. Render reported roughly 110 MiB memory and ~0.0023 CPU during this small test; this is not a capacity guarantee.
+
+After the connection fix, typecheck, formatting, production build, 34 tests, compiled production smoke, and both local browser acceptance tests passed (46.9 seconds). The standalone public Playwright process could not navigate from this execution container (ERR_EMPTY_RESPONSE); direct Node WebSocket testing could not resolve the host (EAI_AGAIN). Live browser interaction above verified the real public connection instead. Public mobile was not separately tested; local 360/390/768/1440 layout checks passed.
+
+Initial deployment omitted development build dependencies under NODE_ENV=production. NPM_CONFIG_INCLUDE=dev fixed the Render build; render.yaml also explicitly includes dev dependencies. The repository is publicly cloned without a Render GitHub authorization, so manual deploy was used after the source update. No paid compute plan was selected. Rooms are intentionally in memory and end on restarts/redeploys; free idle spin-down introduces cold starts.

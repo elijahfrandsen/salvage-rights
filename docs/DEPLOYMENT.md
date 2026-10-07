@@ -1,6 +1,6 @@
 # Deploy and maintain
 
-**Deployment in progress 2026-10-07:** Source is now published at https://github.com/elijahfrandsen/salvage-rights. The Render free Web Service is https://salvage-rights.onrender.com in Oregon, with one instance. Initial build omitted development tools because NODE_ENV=production; NPM_CONFIG_INCLUDE=dev is now configured. Public acceptance checks are pending.
+**Live 2026-10-07:** https://salvage-rights.onrender.com — Render Free, Oregon, one instance. Source: https://github.com/elijahfrandsen/salvage-rights. Service ID: srv-db37nr3ncjis73eo78i0. The live game connects directly over secure WebSockets; same-origin polling GET requests do not reliably carry an Origin header. NPM_CONFIG_INCLUDE=dev ensures the frontend/compiler dependencies are present during production builds.
 
 ## Render: simplest friend-play route
 
@@ -14,7 +14,7 @@
 8. Choose the free compute plan for zero-subscription-cost prototype testing, or personally approve a paid always-on plan. Never treat workspace plan price as the web-service compute price.
 9. Deploy, wait for the health check to succeed, then open the assigned HTTPS URL. Copy its real game link from the lobby. Do not share localhost.
 
-No hosting account, subscription, domain purchase, paid plan, or public deployment was created by this build.
+A public free Web Service was created in Elijah’s workspace. No paid compute plan or domain purchase was selected. The repository is cloned publicly; Render’s GitHub connection is not configured, so a source push did not automatically deploy in this test. Use Manual Deploy → Deploy latest commit, or connect GitHub in Render to enable reliable push-triggered updates. The direct-creation connector does not expose healthCheckPath; this service currently uses the default root health check. The included Blueprint specifies /healthz for future recreations.
 
 ## Cost and availability
 
@@ -26,7 +26,7 @@ Official references checked: [WebSockets](https://render.com/docs/websocket), [W
 
 ## Public smoke test after deployment
 
-These checks remain unperformed until hosting is connected:
+Acceptance checklist (see TEST_REPORT.md for the checks performed on this deployment):
 
 - Open the real HTTPS game in two independent browsers. Create/join via link, refresh the `/room/CODE` URL directly, ready, launch, and finish eight rounds.
 - In browser developer tools confirm `/socket.io` upgrades to **WebSocket / 101** using secure WSS. Polling working alone does not verify WSS.

@@ -2,7 +2,9 @@
 
 A real private-room multiplayer strategy game for 2–6 friends. Split your power between three wrecks, lock secret bids, reveal together, and compete for credits over eight rounds. Every drone costs power, even when you lose.
 
-**Status:** Implemented and tested locally. No public game URL has been deployed. A compatible Node host/account is the remaining launch dependency. This project is not a static-only website.
+**Play publicly:** https://salvage-rights.onrender.com
+
+Hosted on Render Free in Oregon. Create a room and share its invite with 2–6 friends. The service may take about a minute to wake after inactivity. Restarting or redeploying ends active rooms.
 
 ## Play on your computer
 
